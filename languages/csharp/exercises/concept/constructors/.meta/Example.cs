@@ -36,11 +36,11 @@ class RemoteControlCar
     }
 }
 
-class Race
+class RaceTrack
 {
     private int distance;
 
-    public Race(int distance)
+    public RaceTrack(int distance)
     {
         this.distance = distance;
     }

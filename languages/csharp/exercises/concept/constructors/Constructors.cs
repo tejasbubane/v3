@@ -2,35 +2,91 @@ using System;
 
 class RemoteControlCar
 {
-    // TODO: define the constructor
+    private int speed;
+    private int battery = 100;
+    private int batteryDrain;
+    private int distance;
+
+    public RemoteControlCar(int speed, int batteryDrain)
+    {
+        this.speed = speed;
+        this.batteryDrain = batteryDrain;
+    }
 
     public bool BatteryDrained()
     {
-        throw new NotImplementedException("Please implement the BatteryDrained() method");
+        return battery < batteryDrain;
     }
 
     public int DistanceDriven()
     {
-        throw new NotImplementedException("Please implement the DistanceDriven() method");
+        return distance;
     }
 
     public void Drive()
     {
-        throw new NotImplementedException("Please implement the Drive() method");
+        if (!BatteryDrained())
+        {
+            battery -= batteryDrain;
+            distance += speed;
+        }
     }
 
-    public static RemoteControlCar TopModel()
+    public static RemoteControlCar TopOfTheLine()
     {
-        throw new NotImplementedException("Please implement the static TopModel() method");
+        return new RemoteControlCar();
     }
 }
 
-class Race
+class RaceTrack
 {
-    // TODO: define the constructor
+    private int distance;
+
+    public RaceTrack(int distance)
+    {
+        this.distance = distance;
+    }
 
     public bool CarCanFinish(RemoteControlCar car)
     {
-        throw new NotImplementedException("Please implement the CarCanFinish() method");
+        throw new NotImplementedException("Please implement the RaceTrack.CarCanFinish() method");
     }
 }
+
+
+// using System;
+
+// class RemoteControlCar
+// {
+//     // TODO: define the 'RemoteControlCar' classes' constructor
+
+//     public bool BatteryDrained()
+//     {
+//         throw new NotImplementedException("Please implement the RemoteControlCar.BatteryDrained() method");
+//     }
+
+//     public int DistanceDriven()
+//     {
+//         throw new NotImplementedException("Please implement the RemoteControlCar.DistanceDriven() method");
+//     }
+
+//     public void Drive()
+//     {
+//         throw new NotImplementedException("Please implement the RemoteControlCar.Drive() method");
+//     }
+
+//     public static RemoteControlCar TopModel()
+//     {
+//         throw new NotImplementedException("Please implement the (static) RemoteControlCar.TopModel() method");
+//     }
+// }
+
+// class RaceTrack
+// {
+//     // TODO: define the 'RaceTrack' classes' constructor
+
+//     public bool CarCanFinish(RemoteControlCar car)
+//     {
+//         throw new NotImplementedException("Please implement the RaceTrack.CarCanFinish() method");
+//     }
+// }
