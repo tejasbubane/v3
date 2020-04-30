@@ -13,7 +13,7 @@ class RemoteControlCar
 
     public void Drive()
     {
-        if (BatteryDrained())
+        if (!BatteryDrained())
         {
             battery -= batteryDrain;
             distance += speed;
@@ -42,9 +42,11 @@ class Race
 
     public bool CanFinish(RemoteControlCar car)
     {
-        while (!car.BatteryDrained)
+        while (!car.BatteryDrained())
         {
-
+            car.Drive();
         }
+
+        return car.DistanceDriven() >= distance;
     }
 }

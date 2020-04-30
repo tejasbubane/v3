@@ -3,80 +3,60 @@ using Xunit;
 public class RemoteControlCarTests
 {
     [Fact]
-    public void BuyNewCarReturnsInstance()
+    public void NewRemoteControlCarHasNotDrivenAnyDistance()
     {
-        var car = RemoteControlCar.Buy();
-        Assert.NotNull(car);
+        var car = new RemoteControlCar(speed: 10, batteryDrain: 2);
+        Assert.Equal(0, car.DistanceDriven());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void BuyNewCarReturnsNewCarEachTime()
+    [Fact]
+    public void NewRemoteControlCarBatteryIsNotDrained()
     {
-        var car1 = RemoteControlCar.Buy();
-        var car2 = RemoteControlCar.Buy();
-        Assert.NotSame(car2, car1);
+        var car = new RemoteControlCar(speed: 15, batteryDrain: 3);
+        Assert.False(car.BatteryDrained());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void NewCarDistanceDisplay()
+    [Fact]
+    public void DriveIncreasesDistanceDrivenWithSpeed()
     {
-        var car = new RemoteControlCar();
-        Assert.Equal("Driven 0 meters", car.DistanceDisplay());
-    }
-
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void NewCarBatteryDisplay()
-    {
-        var car = new RemoteControlCar();
-        Assert.Equal("Battery at 100%", car.BatteryDisplay());
-    }
-
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void DistanceDisplayAfterDrivingOnce()
-    {
-        var car = new RemoteControlCar();
+        var car = new RemoteControlCar(speed: 5, batteryDrain: 1);
         car.Drive();
-        Assert.Equal("Driven 20 meters", car.DistanceDisplay());
+        Assert.Equal(5, car.DistanceDriven());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void DistanceDisplayAfterDrivingMultipleTimes()
+    [Fact]
+    public void DriveDoesNotIncreaseDistanceDrivenWhenBatteryDrained()
     {
-        var car = new RemoteControlCar();
+        var car = new RemoteControlCar(speed: 9, batteryDrain: 50);
 
-        for (var i = 0; i < 17; i++)
+        // Drain the battery
+        car.Drive();
+        car.Drive();
+
+        // One extra drive attempt (should not succeed)
+        car.Drive();
+
+        Assert.Equal(18, car.DistanceDriven());
+    }
+
+    [Fact]
+    public void DriveToAlmostDrainBattery()
+    {
+        var car = new RemoteControlCar(speed: 2, batteryDrain: 1);
+
+        // Almost drain the battery
+        for (var i = 0; i < 99; i++)
         {
             car.Drive();
         }
 
-        Assert.Equal("Driven 340 meters", car.DistanceDisplay());
+        Assert.False(car.BatteryDrained());
     }
 
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void BatteryDisplayAfterDrivingOnce()
+    [Fact]
+    public void DriveUntilBatteryIsDrained()
     {
-        var car = new RemoteControlCar();
-        car.Drive();
-        Assert.Equal("Battery at 99%", car.BatteryDisplay());
-    }
-
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void BatteryDisplayAfterDrivingMultipleTimes()
-    {
-        var car = new RemoteControlCar();
-
-        for (var i = 0; i < 23; i++)
-        {
-            car.Drive();
-        }
-
-        Assert.Equal("Battery at 77%", car.BatteryDisplay());
-    }
-
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void BatteryDisplayWhenBatteryEmpty()
-    {
-        var car = new RemoteControlCar();
+        var car = new RemoteControlCar(speed: 2, batteryDrain: 1);
 
         // Drain the battery
         for (var i = 0; i < 100; i++)
@@ -84,26 +64,6 @@ public class RemoteControlCarTests
             car.Drive();
         }
 
-        // Attempt to drive one more time (should not work)
-        car.Drive();
-
-        Assert.Equal("Battery empty", car.BatteryDisplay());
-    }
-
-    [Fact(Skip = "Remove this Skip property to run this test")]
-    public void DistanceDisplayWhenBatteryEmpty()
-    {
-        var car = new RemoteControlCar();
-
-        // Drain the battery
-        for (var i = 0; i < 100; i++)
-        {
-            car.Drive();
-        }
-
-        // Attempt to drive one more time (should not work)
-        car.Drive();
-
-        Assert.Equal("Driven 2000 meters", car.DistanceDisplay());
+        Assert.True(car.BatteryDrained());
     }
 }
