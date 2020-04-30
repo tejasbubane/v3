@@ -28,8 +28,9 @@ This Concepts Exercise's Concepts are:
 This Concept Exercise's prerequisites Concepts are:
 
 - `classes`: know how to work with classes.
-- `strings`: know how to do basic string interpolation.
+- `numbers`: know how compare numbers.
 - `conditionals`: know how to do conditional logic.
+- `while-loops`: know how to use `while` loops.
 
 ## Representer
 

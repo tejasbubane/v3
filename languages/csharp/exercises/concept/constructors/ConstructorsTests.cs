@@ -67,3 +67,38 @@ public class RemoteControlCarTests
         Assert.True(car.BatteryDrained());
     }
 }
+
+public class RaceTests
+{
+    [Fact]
+    public void CarCanFinishWithCarThanCanEasilyFinish()
+    {
+        var car = new RemoteControlCar(speed: 10, batteryDrain: 2);
+        var race = new Race(100);
+        Assert.True(race.CarCanFinish(car));
+    }
+
+    [Fact]
+    public void CarCanFinishWithCarThanCanJustFinish()
+    {
+        var car = new RemoteControlCar(speed: 2, batteryDrain: 10);
+        var race = new Race(20);
+        Assert.True(race.CarCanFinish(car));
+    }
+
+    [Fact]
+    public void CarCanFinishWithCarThanJustCannotFinish()
+    {
+        var car = new RemoteControlCar(speed: 3, batteryDrain: 20);
+        var race = new Race(16);
+        Assert.False(race.CarCanFinish(car));
+    }
+
+    [Fact]
+    public void CarCanFinishWithCarThanCannotFinish()
+    {
+        var car = new RemoteControlCar(speed: 1, batteryDrain: 20);
+        var race = new Race(678);
+        Assert.False(race.CarCanFinish(car));
+    }
+}
