@@ -1,28 +1,28 @@
 class RemoteControlCar
 {
-    private int battery = 100;
+    private int batteryPercentage = 100;
     private int distance = 0;
     private int speed;
-    private int batteryDrain;
+    private int batteryDrainPercentage;
 
-    public RemoteControlCar(int speed, int batteryDrain)
+    public RemoteControlCar(int speed, int batteryDrainPercentage)
     {
         this.speed = speed;
-        this.batteryDrain = batteryDrain;
+        this.batteryDrainPercentage = batteryDrainPercentage;
     }
 
     public void Drive()
     {
         if (!BatteryDrained())
         {
-            battery -= batteryDrain;
+            batteryPercentage -= batteryDrainPercentage;
             distance += speed;
         }
     }
 
     public bool BatteryDrained()
     {
-        return battery < batteryDrain;
+        return batteryPercentage < batteryDrainPercentage;
     }
 
     public int DistanceDriven()

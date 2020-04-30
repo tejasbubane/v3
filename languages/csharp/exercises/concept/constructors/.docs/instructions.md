@@ -1,22 +1,17 @@
-In this exercise you'll be organizing a race between remote controlled cars.
+In this exercise you'll be organizing a race between various types of remote controlled cars. Each car has its own speed and battery drain characteristics.
 
-Cars start with full (100%) batteries. Each time you drive the car using the remote control, it covers 20 meters and drains one percent of the battery.
+Cars start with full (100%) batteries. Each time you drive the car using the remote control, it covers the car's speed in meters and decreases the remaining battery percentage by its battery drain.
 
-The remote controlled car has a fancy LED display that shows two bits of information:
-
-- The total distance it has driven, displayed as: `"Driven <METERS> meters"`.
-- The remaining battery charge, displayed as: `"Battery at <PERCENTAGE>%"`.
-
-If the battery is at 0%, you can't drive the car anymore and the battery display will show `"Battery empty"`.
+If a car's battery is below its battery drain percentage, you can't drive the car anymore.
 
 You have six tasks, each of which will work with remote controller car instances.
 
-### 1. Buy a brand-new remote controller car
+### 1. Allow creating a new remote controlled car
 
-Implement the `RemoteControlCar.Buy()` method to return a brand-new remote controlled car instance:
+Implement a constructor for the `RemoteControlCar` class that takes the speed of the car and the batter:
 
 ```csharp
-RemoteControlCar car = RemoteControlCar.Buy();
+RemoteControlCar car = new RemoteControlCar(speed: 5, batteryDrainPercentage: 2);
 ```
 
 ### 2. Display the distance driven
