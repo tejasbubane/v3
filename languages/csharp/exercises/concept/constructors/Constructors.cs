@@ -33,9 +33,4 @@ class Race
     {
         throw new NotImplementedException("Please implement the CarCanFinish() method");
     }
-
-    public static Race Marathon()
-    {
-        throw new NotImplementedException("Please implement the static Marathon() method");
-    }
 }

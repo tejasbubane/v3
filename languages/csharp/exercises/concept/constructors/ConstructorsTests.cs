@@ -9,14 +9,14 @@ public class RemoteControlCarTests
         Assert.Equal(0, car.DistanceDriven());
     }
 
-    [Fact]
+    [Fact(Skip = "Remove this Skip property to run this test")]
     public void NewRemoteControlCarBatteryIsNotDrained()
     {
         var car = new RemoteControlCar(speed: 15, batteryDrain: 3);
         Assert.False(car.BatteryDrained());
     }
 
-    [Fact]
+    [Fact(Skip = "Remove this Skip property to run this test")]
     public void DriveIncreasesDistanceDrivenWithSpeed()
     {
         var car = new RemoteControlCar(speed: 5, batteryDrain: 1);
@@ -24,7 +24,7 @@ public class RemoteControlCarTests
         Assert.Equal(5, car.DistanceDriven());
     }
 
-    [Fact]
+    [Fact(Skip = "Remove this Skip property to run this test")]
     public void DriveDoesNotIncreaseDistanceDrivenWhenBatteryDrained()
     {
         var car = new RemoteControlCar(speed: 9, batteryDrain: 50);
@@ -39,7 +39,7 @@ public class RemoteControlCarTests
         Assert.Equal(18, car.DistanceDriven());
     }
 
-    [Fact]
+    [Fact(Skip = "Remove this Skip property to run this test")]
     public void DriveToAlmostDrainBattery()
     {
         var car = new RemoteControlCar(speed: 2, batteryDrain: 1);
@@ -53,7 +53,7 @@ public class RemoteControlCarTests
         Assert.False(car.BatteryDrained());
     }
 
-    [Fact]
+    [Fact(Skip = "Remove this Skip property to run this test")]
     public void DriveUntilBatteryIsDrained()
     {
         var car = new RemoteControlCar(speed: 2, batteryDrain: 1);
@@ -66,11 +66,52 @@ public class RemoteControlCarTests
 
         Assert.True(car.BatteryDrained());
     }
+
+    [Fact(Skip = "Remove this Skip property to run this test")]
+    public void TopModelHasNotDrivenAnyDistance()
+    {
+        var car = RemoteControlCar.TopModel();
+        Assert.Equal(0, car.DistanceDriven());
+    }
+
+    [Fact(Skip = "Remove this Skip property to run this test")]
+    public void TopModelCarBatteryIsNotDrained()
+    {
+        var car = RemoteControlCar.TopModel();
+        Assert.False(car.BatteryDrained());
+    }
+
+    [Fact(Skip = "Remove this Skip property to run this test")]
+    public void TopModelHasCorrectSpeed()
+    {
+        var car = RemoteControlCar.TopModel();
+        car.Drive();
+        Assert.Equal(50, car.DistanceDriven());
+    }
+
+    [Fact(Skip = "Remove this Skip property to run this test")]
+    public void TopModelHasCorrectBatteryDrain()
+    {
+        var car = RemoteControlCar.TopModel();
+
+        // The battery is almost drained
+        for (var i = 0; i < 24; i++)
+        {
+            car.Drive();
+        }
+
+        Assert.False(car.BatteryDrained());
+
+        // Drain the battery
+        car.Drive();
+
+        Assert.True(car.BatteryDrained());
+    }
 }
 
 public class RaceTests
 {
-    [Fact]
+    [Fact(Skip = "Remove this Skip property to run this test")]
     public void CarCanFinishWithCarThanCanEasilyFinish()
     {
         var car = new RemoteControlCar(speed: 10, batteryDrain: 2);
@@ -78,7 +119,7 @@ public class RaceTests
         Assert.True(race.CarCanFinish(car));
     }
 
-    [Fact]
+    [Fact(Skip = "Remove this Skip property to run this test")]
     public void CarCanFinishWithCarThanCanJustFinish()
     {
         var car = new RemoteControlCar(speed: 2, batteryDrain: 10);
@@ -86,7 +127,7 @@ public class RaceTests
         Assert.True(race.CarCanFinish(car));
     }
 
-    [Fact]
+    [Fact(Skip = "Remove this Skip property to run this test")]
     public void CarCanFinishWithCarThanJustCannotFinish()
     {
         var car = new RemoteControlCar(speed: 3, batteryDrain: 20);
@@ -94,7 +135,7 @@ public class RaceTests
         Assert.False(race.CarCanFinish(car));
     }
 
-    [Fact]
+    [Fact(Skip = "Remove this Skip property to run this test")]
     public void CarCanFinishWithCarThanCannotFinish()
     {
         var car = new RemoteControlCar(speed: 1, batteryDrain: 20);

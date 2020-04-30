@@ -54,9 +54,4 @@ class Race
 
         return car.DistanceDriven() >= distance;
     }
-
-    public static Race Marathon()
-    {
-        return new Race(42195);
-    }
 }
