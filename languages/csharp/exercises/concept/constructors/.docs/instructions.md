@@ -48,7 +48,7 @@ car.BatteryDrained();
 
 ### 5. Create the top of the line remote control car
 
-The current top of the line car is the Nitro, which speed is a stunning 50 meters and its battery drain is 4%. Implement the (static) `RemoteControlCar.TopOfTheLine()` method to return this top of the line car:
+The current top of the line car is the Nitro, which speed is a stunning 50 meters with a battery drain of 4%. Implement the (static) `RemoteControlCar.TopOfTheLine()` method to return this top of the line car:
 
 ```csharp
 var car = RemoteControlCar.TopOfTheLine();
